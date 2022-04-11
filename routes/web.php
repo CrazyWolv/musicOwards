@@ -16,7 +16,5 @@ use App\Http\Controllers\ArtistController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/form', function(){
-    return view('artistform');
-});
+Route::get('/form', [ArtistController::class, 'getCategories']);
 Route::post('/form', [ArtistController::class, 'addArtist']);

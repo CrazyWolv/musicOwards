@@ -27,7 +27,7 @@
             <button class="close-button"><i class="fa fa-close"></i></button>
         </div>
 
-        <form class="form-default form-artiste" method="POST">
+        <form class="form-default form-artiste" method="POST" action="/">
             @csrf
             <div class="input-group">
                 <label class="main-label" for="artist-name">Nom de l'artiste</label>
@@ -48,30 +48,12 @@
             <div class="input-group">
                 <label class="main-label">Genre</label>
                 <div class="radio-group">
+                    @foreach($categories as $category)
                     <div class="radio-item">
-                        <input type="radio" name="artist-genre" id="artist-genre-1" value="Rock" required>
-                        <label for="artist-genre-1">Rock</label>
+                        <input type="radio" name="artist-genre" id="artist-genre-{{$category->id}}" value="{{$category->id}}" required>
+                        <label for="artist-genre-{{$category->id}}">{{$category->name}}</label>
                     </div>
-                    <div class="radio-item">
-                        <input type="radio" name="artist-genre" id="artist-genre-2" value="Pop" required>
-                        <label for="artist-genre-2">Pop</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="artist-genre" id="artist-genre-3" value="Rap" required>
-                        <label for="artist-genre-3">Rap</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="artist-genre" id="artist-genre-4" value="Jazz" required>
-                        <label for="artist-genre-4">Jazz</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="artist-genre" id="artist-genre-5" value="Classique" required>
-                        <label for="artist-genre-5">Classique</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="artist-genre" id="artist-genre-6" value="Autre" required>
-                        <label for="artist-genre-6">Autre</label>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>
@@ -84,7 +66,7 @@
                 <textarea type="text" name="artist-albums" cols="30" rows="5" id="artist-albums" required placeholder="Un album par ligne"></textarea>
             </div>
             <div class="input-group">
-                <button class="btn btn-primary btn-icon-left" type="submit">
+                <button class="btn btn-primary btn-icon-left" id="submit-button" type="submit">
                     <i class="fa-solid fa-check"></i>
                     Proposer
                 </button>

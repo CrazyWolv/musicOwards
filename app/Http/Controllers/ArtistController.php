@@ -4,16 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
+use App\Models\Category;
 
 class ArtistController extends Controller
 {
-    public function addArtist(Request $request){
-        $reqProps = $request->all();
-        $artist = new Artist;
-        
-        dump($reqProps);
-        exit();
+    public function getCategories(){
+        $categories = Category::all();
+        $data = [];
+        $data['categories'] = $categories;
 
-        // $artist->save();
+        return view('artistform', $data);
+    }
+
+    public function addArtist(Request $request){
+        $artist = new Artist;
+        $artist->name = $request->input('artist-name');
+        $artist->description = $request->input('artist-description');
+        $artist->image = $request->input('artist-picture');
+        $artist->url_video = $request->input('artist-video');
+        $artist->album = $request->input('artist-albums');
+        $artist->category_id = $request->input('artist-genre');
+        
+        // dump($reqProps);
+        // exit();
+
+        // dump($artist);
+        $artist->save();
     }
 }
