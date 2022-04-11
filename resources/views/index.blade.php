@@ -19,13 +19,13 @@
 
         <nav class="main-nav">
             <ul class="main-nav-list">
-                <li class="main-nav-item is-active"><a href="form-artiste.html" class="main-nav-link">Proposer un artiste</a></li>
+                <li class="main-nav-item is-active"><a href="form" class="main-nav-link">Proposer un artiste</a></li>
                 <li class="main-nav-item"><a href="category.html" class="main-nav-link">Catégorie</a></li>
                 <li class="main-nav-item"><a href="artiste.html" class="main-nav-link">Artiste</a></li>
             </ul>
         </nav>
         
-        <a href="form-artiste.html" class="btn btn-primary" id="btn-add-artist">Proposer un artiste</a>
+        <a href="form" class="btn btn-primary" id="btn-add-artist">Proposer un artiste</a>
     </header>
 
     <main class="main-container homepage">
