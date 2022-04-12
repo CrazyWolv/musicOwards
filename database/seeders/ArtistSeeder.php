@@ -131,5 +131,17 @@ class ArtistSeeder extends Seeder
             ',
             'category_id' => 1,
         ]);
+        DB::table('artists')->insert([
+            'id' => 8,
+            'name' => 'Fly Me to the Moon',
+            'description' => $faker->sentence(10, true),
+            'image' => 'flymetothemoon.jpg',
+            'url_video' => 'https://www.youtube.com/watch?v=kcx7lqnw8wQ',
+            'album' => 'Astronomicomical
+                Jelly Humorous
+                Stored in a Silver Fox
+            ',
+            'category_id' => 2,
+        ]);
     }
 }
