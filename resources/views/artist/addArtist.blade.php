@@ -1,33 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Owards</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+@extends('layout')
 
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
-
-    <header>
-        <a href="/" class="site-title"><i class="fa-solid fa-compact-disc"></i>Music Owards</a>
-        <a href="form" class="btn btn-primary" id="btn-add-artist">Proposer un artiste</a>
-    </header>
+@section('content')
 
     <main class="main-container page-content">
         <h1 class="main-title">Faire une proposition d'artiste</h1>
 
-        <div class="flash-message">
-            <p>Merci. Votre proposition a bien été envoyée.</p>
-            <button class="close-button"><i class="fa fa-close"></i></button>
-        </div>
-
-        <form class="form-default form-artiste" method="POST" action="/">
+        <form class="form-default form-artiste" method="POST" action="{{ route('submitArtist') }}">
             @csrf
             <div class="input-group">
                 <label class="main-label" for="artist-name">Nom de l'artiste</label>
@@ -73,12 +51,5 @@
             </div>
         </form>
     </main>
-    
 
-    <footer>
-        <p>Copyright &copy; 2022 - Music Owards</p>
-    </footer>
-    
-    <script src="js/main.js"></script>
-</body>
-</html>
+@endsection

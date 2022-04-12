@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Owards</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+@extends('layout')
 
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
-
-    <header>
-        <a href="index.html" class="site-title"><i class="fa-solid fa-compact-disc"></i>Music Owards</a>
-
-        <nav class="main-nav">
-            <ul class="main-nav-list">
-                <li class="main-nav-item is-active"><a href="form" class="main-nav-link">Proposer un artiste</a></li>
-                <li class="main-nav-item"><a href="category.html" class="main-nav-link">Catégorie</a></li>
-                <li class="main-nav-item"><a href="artiste.html" class="main-nav-link">Artiste</a></li>
-            </ul>
-        </nav>
-        
-        <a href="form" class="btn btn-primary" id="btn-add-artist">Proposer un artiste</a>
-    </header>
+@section('content')
 
     <main class="main-container homepage">
         <div class="hero-title-group">
@@ -129,9 +103,4 @@
         </div>
     </main>
 
-    <footer>
-        <p>Copyright &copy; 2022 - Music Owards</p>
-    </footer>
-    
-</body>
-</html>
+@endsection

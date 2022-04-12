@@ -8,27 +8,50 @@ use App\Models\Category;
 
 class ArtistController extends Controller
 {
-    public function getCategories(){
+    public function addArtist(){
         $categories = Category::all();
         $data = [];
         $data['categories'] = $categories;
 
-        return view('artistform', $data);
+        return view('artist/addArtist', $data);
     }
 
-    public function addArtist(Request $request){
+    public function submitArtist(Request $request){
+        // dd($request);
+             
+        // récupération des valeurs
+        $name = $request->input('artist-name');
+        $description = $request->input('artist-description');
+        $image = $request->input('artist-picture');
+        $url_video = $request->input('artist-video');
+        $album = $request->input('artist-albums');
+        $genre = $request->input('artist-genre');
+
+        // Création d'un nouvel artiste
         $artist = new Artist;
-        $artist->name = $request->input('artist-name');
-        $artist->description = $request->input('artist-description');
-        $artist->image = $request->input('artist-picture');
-        $artist->url_video = $request->input('artist-video');
-        $artist->album = $request->input('artist-albums');
-        $artist->category_id = $request->input('artist-genre');
+        $artist->name = $name;
+        $artist->description = $description;
+        $artist->image = $image;
+        $artist->url_video = $url_video;
+        $artist->album = $album;
+        $artist->category_id = $genre;
         
-        // dump($reqProps);
+        // $reqPost = $request->all();
+        // dump($reqPost);
         // exit();
 
-        // dump($artist);
+        // dd($artist);
+
+        // Enregistrement de la nouvelle instance en BDD
         $artist->save();
+
+        // Redirection de l'utilisateur pour éviter
+        // que l'user inscrive 50 fois son formulaire
+        // dans la BDD
+        return view('artist/confirmArtist');
+    }
+
+    public function confirmArtist(){
+        return view('artist/confirmArtist');
     }
 }

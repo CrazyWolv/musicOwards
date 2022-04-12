@@ -8,15 +8,11 @@ const app = {
     events: function() {
             console.log('ok');
             
-            const submitButton = document.getElementById('submit-button');
+            // add is-visible class on .flash-message elements when flash-message isset
             const flashMessage = document.querySelectorAll('.flash-message');
-            submitButton.addEventListener('click', function(event){
-                event.preventDefault();
-                // add is-visible class on .flash-message elements at load with vanilla js
-                for (let i = 0; i < flashMessage.length; i++) {
-                    flashMessage[i].classList.add('is-visible');
-                }
-            });
+            for (let i = 0; i < flashMessage.length; i++) {
+                flashMessage[i].classList.add('is-visible');
+            };
 
         // remove is-visible class on .flash-message elements when clicked on child .close-button
         const closeButton = document.querySelectorAll('.close-button');
