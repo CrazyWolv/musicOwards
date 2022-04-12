@@ -25,4 +25,9 @@ class HomeController extends Controller
 
         return view('index', $data);
     }
+
+    public function backoffice()
+    {
+        return view('backoffice/backoffice');
+    }
 }
