@@ -33,18 +33,18 @@ Route::get('/artists', [ArtistController::class, 'getArtists']);
 
 // Artists CRUD
 // Create
-Route::get('/backoffice/artist/create', [ArtistController::class, 'createArtist'])->name("createArtist");
-Route::post('/backoffice/artist/create', [ArtistController::class, 'newArtist'])->name("newArtist");
+Route::get('/backoffice/artist/create', [BackOfficeArtistController::class, 'createArtist'])->name("createArtist");
+Route::post('/backoffice/artist/create', [BackOfficeArtistController::class, 'newArtist'])->name("newArtist");
 
 // Read
-Route::get('/backoffice/artists', [ArtistController::class, 'getArtistsBack'])->name("allArtists");
+Route::get('/backoffice/artists', [BackOfficeArtistController::class, 'getArtistsBack'])->name("allArtists");
 
 // Update
-Route::get('/backoffice/artist/edit/{id}', [ArtistController::class, 'editArtist'])->name("editArtist");
-Route::put('/backoffice/artists', [ArtistController::class, 'updateArtist'])->name("updateArtist");
+Route::get('/backoffice/artist/edit/{id}', [BackOfficeArtistController::class, 'editArtist'])->name("editArtist");
+Route::post('/backoffice/artist/editConfirm/{id}', [BackOfficeArtistController::class, 'updateArtist'])->name("updateArtist");
 
 // Delete
-Route::delete('/backoffice/artist/delete/{id}', [ArtistController::class, 'deleteArtist'])->name("deleteArtist");
+Route::delete('/backoffice/artist/delete/{id}', [BackOfficeArtistController::class, 'deleteArtist'])->name("deleteArtist");
 
 
 // Artist Suggestions - Front-side

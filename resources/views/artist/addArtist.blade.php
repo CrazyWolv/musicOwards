@@ -22,14 +22,14 @@
                 <label class="main-label" for="artist-name">Nom de l'artiste</label>
                 <input type="text" name="artist-name" id="artist-name" placeholder="Nom de l'artiste" value="{{old('artist-name')}}">
             </div>
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <label class="main-label" for="artist-name">Photo de l'artiste</label>
                 <input type="text" name="artist-picture" id="artist-picture" placeholder="Photo de l'artiste" value="{{old('artist-picture')}}">
-            </div>
-            <!-- <div class="input-group">
-                <label class="main-label" for="artist-picture">Photo de l'artiste</label>
-                <input type="file" name="artist-picture" id="artist-picture">
             </div> -->
+            <div class="input-group">
+                <label class="main-label" for="artist-picture">Photo de l'artiste</label>
+                <input type="file" name="artist-picture" id="artist-picture" value="{{old('artist-picture')}}">
+            </div>
             <div class="input-group">
                 <label class="main-label" for="artist-description">Description</label>
                 <textarea name="artist-description" id="artist-description" cols="30" rows="5" placeholder="Description" value="{{old('artist-description')}}"></textarea>
