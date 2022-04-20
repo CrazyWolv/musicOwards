@@ -12,6 +12,7 @@ class ArtistController extends Controller
 {
     /**
      * Affiche la liste complète de tous les artistes
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function list()
     {
@@ -23,6 +24,7 @@ class ArtistController extends Controller
 
     /**
      * Affichage du formulaire de création d'un nouvel artiste
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function add()
     {
@@ -38,6 +40,7 @@ class ArtistController extends Controller
     
     /**
      * Traitement du formulaire de création d'un artiste
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function addSubmit(Request $request)
     {
@@ -59,6 +62,7 @@ class ArtistController extends Controller
 
     /**
      * Affichage du formulaire en modification
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function edit(int $id)
     {
@@ -73,6 +77,7 @@ class ArtistController extends Controller
 
     /**
      * Traitement du formulaire de modification d'un artiste
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function editSubmit(Request $request, int $id)
     {
@@ -96,6 +101,7 @@ class ArtistController extends Controller
 
     /**
      * Methode qui gère la sauvegarde d'un artiste (en création ou modification)
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     private function save(Request $request, Artist $artist)
     {
@@ -131,8 +137,9 @@ class ArtistController extends Controller
 
     /**
      * Suppression d'un artiste
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         // charge l'artiste à supprimer
         $artist = Artist::find($id);

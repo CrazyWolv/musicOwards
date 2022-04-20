@@ -10,6 +10,7 @@ class ArtistController extends Controller
 {
     /**
      * Controller qui affichera le formulaire 
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function addArtist()
     {
@@ -28,15 +29,15 @@ class ArtistController extends Controller
     }
 
     /**
-     * Réception des données du formulaire 
-     * et enregistrement dans la base de données
-     * @param mixed $request Dependance injection
+     * Réception des données du formulaire et enregistrement dans la base de données
+     * @param \Illuminate\Http\Request  $request
      * @property string $name name of the artist
      * @property string $image image of the artist
      * @property string $description description of the artist
      * @property int $category_id genre of the artist
      * @property string $url_video video of the artist
      * @property string $album album of the artist
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function submitArtist(Request $request) 
     {
@@ -49,8 +50,6 @@ class ArtistController extends Controller
             'url_video' => 'required',
             'album' => 'required'
         ]);
-
-
 
 
         // récupération des valeurs transmises notre formulaire
@@ -91,6 +90,7 @@ class ArtistController extends Controller
 
     /**
      * Page de confirmation d'enregistrement d'un artiste
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function confirmArtist()
     {

@@ -5,8 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artist;
 
+/**
+ * Homepage Controller - show the homepage view
+ */
+
 class HomeController extends Controller
 {
+    /**
+     * Return homepage view
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     **/
     public function index()
     {
         // On récupère tous les artistes
