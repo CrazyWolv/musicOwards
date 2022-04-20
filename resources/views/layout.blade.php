@@ -22,13 +22,27 @@
                 <li class="main-nav-item is-active"><a href="{{ route('addArtist') }}" class="main-nav-link">Proposer un artiste</a></li>
                 <li class="main-nav-item"><a href="category.html" class="main-nav-link">Catégorie</a></li>
                 <li class="main-nav-item"><a href="artiste.html" class="main-nav-link">Artiste</a></li>
+                @if (!Auth::user())
+                <li class="main-nav-item"><a href="{{ route('login') }}" class="main-nav-link">Se connecter</a></li>
+                @else
+                <form action="{{route("logout")}}" method="POST">
+                    @csrf
+                    <button type="submit">se deconnecter</button>
+                </form>
+                @endif
             </ul>
         </nav>
         
+        {{-- route() permet de récupérer la route dont le name est 'addArtist' --}}
         <a href="{{ route('addArtist') }}" class="btn btn-primary" id="btn-add-artist">Proposer un artiste</a>
     </header>
 
+
+    {{-- les templates qui étendront ce layout pourront faire une section avec du contenu --}}
+    {{-- qui sera inscrit à cet emplacement --}}
     @yield('content')
+
+    
 
     <footer>
         <p>Copyright &copy; 2022 - Music Owards</p>

@@ -3,73 +3,97 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Artist;
 use App\Models\Category;
+use App\Models\Artist;
 
 class ArtistController extends Controller
 {
-    public function getArtists(){
-        $artists = Artist::all();
-        $data = [];
-        $data['artists'] = $artists;
+    /**
+     * Controller qui affichera le formulaire 
+     */
+    public function addArtist()
+    {
+        // on intéroge la BDD grâce à notre modèle Category pour lister toutes les catégories
+        $categories = Category::get();
 
-        return view('artist/allArtists', $data);
-    }
-
-    public function addArtist(){
-        $categories = Category::all();
+        // création du tableau de data pour la view
         $data = [];
+
+        // la clé correspondra à une variable
+        // disponible dans notre view
         $data['categories'] = $categories;
 
+        // appel de la view qui est retournée
         return view('artist/addArtist', $data);
     }
 
-    public function submitArtist(Request $request){
-        // dd($request);
-
-        // Validation security
+    /**
+     * Réception des données du formulaire 
+     * et enregistrement dans la base de données
+     * @param mixed $request Dependance injection
+     * @property string $name name of the artist
+     * @property string $image image of the artist
+     * @property string $description description of the artist
+     * @property int $category_id genre of the artist
+     * @property string $url_video video of the artist
+     * @property string $album album of the artist
+     */
+    public function submitArtist(Request $request) 
+    {
+        // on contrôle les données obligatoires
         $request->validate([
-            'artist-name' => 'required|min:3|max:255',
-            'artist-description' => 'required|min:3|max:255',
-            'artist-picture' => 'required',
-            'artist-video' => 'required',
-            'artist-albums' => 'required',
-            'artist-genre' => 'required|exists:categories,id',
+            'name' => 'required|min:3|max:255',
+            'image' => 'required',
+            'description' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'url_video' => 'required',
+            'album' => 'required'
         ]);
-             
-        // récupération des valeurs
-        $name = $request->input('artist-name');
-        $description = $request->input('artist-description');
-        $image = $request->input('artist-picture');
-        $url_video = $request->input('artist-video');
-        $album = $request->input('artist-albums');
-        $genre = $request->input('artist-genre');
 
-        // Création d'un nouvel artiste
-        $artist = new Artist;
+
+
+
+        // récupération des valeurs transmises notre formulaire
+        $name = $request->input('name');
+        //$image = $request->input('image');
+        $description = $request->input('description');
+        $category_id = $request->input('category_id');
+        $url_video = $request->input('url_video');
+        $album = $request->input('album');
+
+        // stockage de l'image dans le dossier /storage/app/public/images/
+        $image = $request->file('image')->store('public/images');
+
+        // On peuple les données de notre modèles Artist
+        $artist = new Artist();
         $artist->name = $name;
-        $artist->description = $description;
         $artist->image = $image;
+        $artist->description = $description;
+        $artist->category_id = $category_id;
         $artist->url_video = $url_video;
         $artist->album = $album;
-        $artist->category_id = $genre;
-        
-        // $reqPost = $request->all();
-        // dump($reqPost);
-        // exit();
 
-        // dd($artist);
-
-        // Enregistrement de la nouvelle instance en BDD
+        // sauvegarde notre modele
+        // (notre modèle n'ayant pas été peuplé depuis une lecture dans la BDD, 
+        // cela correspondra à un insert)
         $artist->save();
 
-        // Redirection de l'utilisateur pour éviter
-        // que l'user inscrive 50 fois son formulaire
-        // dans la BDD
-        return view('artist/confirmArtist');
+        
+        // redirection vers la page confirmation
+        return redirect(route('confirmArtist'));
+
+        // il recommandé de rediriger vers une page de confirmation 
+        // au lieu de simplement afficher une view de confirmation 
+        // à ce niveau. 
+        // Ainsi si l'utilisateur relaod la page de confirmation, 
+        // cela ne déclenchera pas un nouvel enregistrement dans la base de données
     }
 
-    public function confirmArtist(){
+    /**
+     * Page de confirmation d'enregistrement d'un artiste
+     */
+    public function confirmArtist()
+    {
         return view('artist/confirmArtist');
     }
 }

@@ -9,25 +9,23 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // on récupère TOUS les artistes
+        // On récupère tous les artistes
         $artists = Artist::get();
 
-        // on récupère 3 artistes de façon random
-        $topArtists = Artist::inRandomOrder()->limit(3)->get();
 
-        // création du tableau data pour la view
+        // on récupère 3 artistes tirés aléatoirement
+        $topArtists = Artist::inRandomOrder()->limit(3)->get() ;
+
+
+        // création du tableau de data pour la view
         $data = [];
 
-        // on stocke les artists récupérés dans
-        // notre tableau data
+        // la clé correspondra à une variable
+        // disponible dans notre view
         $data['artists'] = $artists;
         $data['topArtists'] = $topArtists;
 
+        // appel de la view
         return view('index', $data);
-    }
-
-    public function backoffice()
-    {
-        return view('backoffice/backoffice');
     }
 }

@@ -6,13 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artist extends Model
 {
-    protected $fillable = ["name", "image", "description", "url_video","album","category_id"];
-    
-    public function category(){
+    /**
+     * Link Categories Model to Artist Model so it can return them
+     * @return Method
+     **/
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function votes(){
+    /**
+     * Link Votes Model to Artist Model so it can return them
+     * @return Method
+     **/
+    public function votes()
+    {
         return $this->hasMany(Vote::class);
     }
 }
